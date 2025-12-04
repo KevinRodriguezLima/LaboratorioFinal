@@ -1,7 +1,7 @@
 def _left_rotate(n, b):
     return ((n << b) | (n >> (32 - b))) & 0xffffffff
 
-def sha1_manual(message):
+def sha1(message):
     # Convertir mensaje a bytes
     if isinstance(message, str):
         message = message.encode()
@@ -16,7 +16,7 @@ def sha1_manual(message):
     while (len(message) * 8) % 512 != 448:
         message += b'\x00'
 
-    # Agregar longitud original
+    # Agregar longitud original (64 bits al final)
     message += original_len_bits.to_bytes(8, 'big')
 
     # HASH CONSTANTES
@@ -26,12 +26,12 @@ def sha1_manual(message):
     h3 = 0x10325476
     h4 = 0xC3D2E1F0
 
-    # Procesar de 512 en 512 bits
+    # Procesar de 512 en 512 bits (64 bytes)
     for i in range(0, len(message), 64):
         chunk = message[i:i+64]
 
-        # Crear 80 palabras
-        w = [0]*80
+        # Crear 80 palabras de 32 bits
+        w = [0] * 80
         for j in range(16):
             w[j] = int.from_bytes(chunk[j*4:(j*4)+4], 'big')
 
