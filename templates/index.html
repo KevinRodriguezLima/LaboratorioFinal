@@ -6,34 +6,47 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <div class="app-container">
-        <h1>Calculadora de Funciones Hash</h1>
-        <p class="subtitle">
-            Ingresa un mensaje, elige el algoritmo y genera su huella digital.
-        </p>
+    <div class="bg-grid"></div>
+    <div class="app-shell">
+        <header class="hero">
+            <span class="pill">Laboratorio de Hashes</span>
+            <h1><span class="gradient">Calculadora</span> de funciones hash</h1>
+            <p class="subtitle">
+                Ingresa un mensaje, elige el algoritmo y genera su huella digital.
+            </p>
+        </header>
 
-        <div class="card">
-            <label for="msg">Mensaje a codificar</label>
-            <textarea id="msg" rows="3" placeholder="Escribe aquí el texto a hashear..."></textarea>
+        <main class="card">
+            <div class="field">
+                <label for="msg">Mensaje a codificar</label>
+                <textarea id="msg" rows="3" placeholder="Escribe tu texto aquí..."></textarea>
+            </div>
 
-            <label for="algorithm">Algoritmo</label>
-            <select id="algorithm">
-                <option value="SHA1">SHA-1</option>
-                <option value="MD5">MD5</option>
-                <option value="SHA256">SHA-256</option>
-                <option value="SHA3">SHA-3</option>
-                <option value="HMAC">HMAC</option>
-            </select>
+            <div class="field two-cols">
+                <div>
+                    <label for="algorithm">Algoritmo</label>
+                    <select id="algorithm">
+                        <option value="SHA1">SHA-1</option>
+                        <option value="MD4">MD4</option>
+                        <option value="MD5">MD5</option>
+                        <option value="SHA256">SHA-256</option>
+                        <option value="SHA3">SHA-3</option>
+                        <option value="HMAC">HMAC</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="output">Resultado</label>
+                    <textarea id="output" rows="2" readonly placeholder="Se mostrará el hash..."></textarea>
+                </div>
+            </div>
 
-            <button onclick="generateHash()">Generar hash</button>
-
-            <label for="output">Resultado</label>
-            <textarea id="output" rows="3" readonly></textarea>
-
-            <button class="secondary" onclick="clearFields()">Limpiar</button>
+            <div class="actions">
+                <button class="primary" onclick="generateHash()">Generar hash</button>
+                <button class="secondary" onclick="clearFields()">Limpiar</button>
+            </div>
 
             <p id="status" class="status-text"></p>
-        </div>
+        </main>
     </div>
 
     <script src="/static/js/main.js"></script>
